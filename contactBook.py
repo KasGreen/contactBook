@@ -5,6 +5,18 @@ def createFileIfDosentExist():
 		file = open(fileName, 'x')
 		file.close()
 
+def addContact():
+	firstName = input('What is the contacts first name')
+	lastName = input('What is the contacts last name')
+	email = input('What is the contacts email')
+	phoneNum = input('What is the contacts phone number')
+	contactInfo = firstName + ',' + lastName + ',' + email + ',' + phoneNum
+	if isFileEmpty() == False:
+		contactInfo = '\n' + contactInfo
+	file = open(fileName, 'a')
+	file.write(contactInfo)
+	file.close()
+
 def viewContacts():
 	file = open(fileName, 'r')
 	emptyFile = True
@@ -14,9 +26,14 @@ def viewContacts():
 		firstName, lastName, email, phoneNum = line.split(',')
 		print('Name: ' + firstName + ' ' + lastName + '\nEmail: ' + email + '\nNumber: ' + phoneNum + '\n')	
 	if emptyFile == True:
-		print('The file is empty')
+		print('No contacts found')
 	file.close()
 
+def isFileEmpty():
+	emptyFile = False
+	if os.path.getsize(fileName) == 0:
+		emptyFile = True
+	return emptyFile
 
 createFileIfDosentExist()
 
@@ -40,7 +57,7 @@ while continueContactBook == True:
 			validUserOption = True
 
 	if userOption == 1:
-		print('option 1')
+		addContact()
 	elif userOption == 2:
 		print('option 2')
 	elif userOption == 3:
