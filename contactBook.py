@@ -1,7 +1,12 @@
 import os
+fileName = 'contacts.csv'
+def createFileIfDosentExist():
+	if os.path.exists(fileName) == False:
+		file = open(fileName, 'x')
+		file.close()
+
 def viewContacts():
-	FileName = 'contacts.csv'
-	file = open(FileName, 'r')
+	file = open(fileName, 'r')
 	for line in file:
 		line = line.strip('\n')
 		firstName, lastName, email, phoneNum = line.split(',')
@@ -10,6 +15,7 @@ def viewContacts():
 	file.close()
 
 
+createFileIfDosentExist()
 
 continueContactBook = True
 while continueContactBook == True:
