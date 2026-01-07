@@ -1,9 +1,22 @@
+import os
+def viewContacts():
+	FileName = 'contacts.csv'
+	file = open(FileName, 'r')
+	for line in file:
+		line = line.strip('\n')
+		firstName, lastName, email, phoneNum = line.split(',')
+		print('Name: ' + firstName + ' ' + lastName + '\nEmail: ' + email + '\nNumber: ' + phoneNum + '\n')	
+
+	file.close()
+
+
+
 continueContactBook = True
 while continueContactBook == True:
-	valid_user_option = False
-	while valid_user_option == False:
+	validUserOption = False
+	while validUserOption == False:
 		try:
-			user_option = int(input('''Would you like to: 
+			userOption = int(input('''Would you like to: 
 1: Add a new contact
 2: Delete a contact
 3: View all contacts
@@ -12,18 +25,18 @@ while continueContactBook == True:
 		except:
 			print('Please enter a number')
 			continue
-		if user_option < 1 or user_option > 4:
+		if userOption < 1 or userOption > 4:
 			print('Please enter a valid number')
 		else:
-			valid_user_option = True
+			validUserOption = True
 
-	if user_option == 1:
+	if userOption == 1:
 		print('option 1')
-	elif user_option == 2:
+	elif userOption == 2:
 		print('option 2')
-	elif user_option == 3:
-		print('option 3')
-	elif user_option == 4:
+	elif userOption == 3:
+		viewContacts()
+	elif userOption == 4:
 		print('option 4')
 
 	validAnswer = ''
