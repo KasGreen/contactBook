@@ -19,13 +19,12 @@ def addContact():
 
 def viewContacts():
 	file = open(fileName, 'r')
-	emptyFile = True
-	for line in file:
-		emptyFile = False
-		line = line.strip('\n')
-		firstName, lastName, email, phoneNum = line.split(',')
-		print('Name: ' + firstName + ' ' + lastName + '\nEmail: ' + email + '\nNumber: ' + phoneNum + '\n')	
-	if emptyFile == True:
+	if isFileEmpty() == False:
+		for line in file:
+			line = line.strip('\n')
+			firstName, lastName, email, phoneNum = line.split(',')
+			print('Name: ' + firstName + ' ' + lastName + '\nEmail: ' + email + '\nNumber: ' + phoneNum + '\n')	
+	else:
 		print('No contacts found')
 	file.close()
 
