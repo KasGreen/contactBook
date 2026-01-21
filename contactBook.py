@@ -1,4 +1,5 @@
 import os
+import sys
 fileName = 'contacts.csv'
 def createFileIfDosentExist():
 	if os.path.exists(fileName) == False:
