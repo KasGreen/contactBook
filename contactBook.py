@@ -18,15 +18,39 @@ def addContact():
 	file.write(contactInfo)
 	file.close()
 
-def viewContacts():
-	file = open(fileName, 'r')
-	if isFileEmpty() == False:
-		for line in file:
-			line = line.strip('\n')
-			firstName, lastName, email, phoneNum = line.split(',')
-			print('Name: ' + firstName + ' ' + lastName + '\nEmail: ' + email + '\nNumber: ' + phoneNum + '\n')	
-	else:
+def deleteContact():
+	contactToDelete = input('enter the phone number of the contact you want to delete')
+	if isFileEmpty() == True:
 		print('No contacts found')
+		return
+	file = open(fileName, 'r')
+	lines = []
+	for line in file:
+		line = line.strip('\n')
+		lines.append(line)
+	for i in range (0, len(lines)):
+		firstName, lastName, email, phoneNum = lines[i].split(',')
+		if contactToDelete == phoneNum:
+			lines.pop(i)
+			break			
+	file.close()
+	file = open(fileName, 'w')
+	for i in range(0, len(lines)):
+		if i > 0:
+			file.write('\n' + lines[i])
+		else:
+			file.write(lines[i])
+	file.close()
+
+
+def viewContacts():
+	if isFileEmpty() == True:
+		print('No contacts found')
+	file = open(fileName, 'r')
+	for line in file:
+		line = line.strip('\n')
+		firstName, lastName, email, phoneNum = line.split(',')
+		print('Name: ' + firstName + ' ' + lastName + '\nEmail: ' + email + '\nNumber: ' + phoneNum + '\n')	
 	file.close()
 
 def isFileEmpty():
@@ -59,7 +83,7 @@ while continueContactBook == True:
 	if userOption == 1:
 		addContact()
 	elif userOption == 2:
-		print('option 2')
+		deleteContact()
 	elif userOption == 3:
 		viewContacts()
 	elif userOption == 4:
