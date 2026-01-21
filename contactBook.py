@@ -62,7 +62,8 @@ while continueContactBook == True:
 	elif userOption == 3:
 		viewContacts()
 	elif userOption == 4:
-		print('option 4')
+		print('Bye')
+		sys.exit(0)
 
 	validAnswer = ''
 	while validAnswer != 'y' and validAnswer != 'n':
