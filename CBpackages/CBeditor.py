@@ -2,7 +2,7 @@ import os
 import sys
 
 if __name__ == '__main__':
-	print('error: can not be run as main module')
+	print('Error: can not be run as main module')
 	sys.exit(1)
 
 fileName = 'contacts.csv'
@@ -12,10 +12,10 @@ def createFileIfDosentExist():
 		file.close()
 
 def addContact():
-	firstName = input('What is the contacts first name')
-	lastName = input('What is the contacts last name')
-	email = input('What is the contacts email')
-	phoneNum = input('What is the contacts phone number')
+	firstName = input('What is the contacts first name?\n')
+	lastName = input('What is the contacts last name?\n')
+	email = input('What is the contacts email?\n')
+	phoneNum = input('What is the contacts phone number?\n')
 	contactInfo = firstName + ',' + lastName + ',' + email + ',' + phoneNum
 	if isFileEmpty() == False:
 		contactInfo = '\n' + contactInfo
@@ -24,10 +24,11 @@ def addContact():
 	file.close()
 
 def deleteContact():
-	contactToDelete = input('enter the phone number of the contact you want to delete')
 	if isFileEmpty() == True:
 		print('No contacts found')
 		return
+
+	contactToDelete = input('Enter the phone number of the contact you want to delete')
 	file = open(fileName, 'r')
 	lines = []
 	for line in file:
@@ -51,6 +52,8 @@ def deleteContact():
 def viewContacts():
 	if isFileEmpty() == True:
 		print('No contacts found')
+		return
+
 	file = open(fileName, 'r')
 	for line in file:
 		line = line.strip('\n')

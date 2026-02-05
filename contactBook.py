@@ -2,8 +2,12 @@ from CBpackages import CBeditor as cbe
 import sys
 
 if __name__ != '__main__':
-	print('error: must be run as main module')
+	print('Error: must be run as main module')
 	sys.exit(1)
+
+def programExit():
+	print('Bye')
+	sys.exit(0)
 
 cbe.createFileIfDosentExist()
 
@@ -21,6 +25,7 @@ while continueContactBook == True:
 		except:
 			print('Please enter a number')
 			continue
+			
 		if userOption < 1 or userOption > 4:
 			print('Please enter a valid number')
 		else:
@@ -33,13 +38,13 @@ while continueContactBook == True:
 	elif userOption == 3:
 		cbe.viewContacts()
 	elif userOption == 4:
-		print('Bye')
-		sys.exit(0)
+		programExit()
 
 	validAnswer = ''
 	while validAnswer != 'y' and validAnswer != 'n':
-		validAnswer = input('Would you like to select anothor option y/n: ')
+		validAnswer = input('Would you like to select another option y/n: ')
 		if validAnswer == 'y':
 			break
 		if validAnswer == 'n':
 			continueContactBook = False
+programExit()
